@@ -15,6 +15,7 @@ namespace RestDotnet.Data
 
         public DbSet<Motorcycle> Motorcycles { get; set; }
 
+        public DbSet<User> Users { get; set; }
 
 
     }
