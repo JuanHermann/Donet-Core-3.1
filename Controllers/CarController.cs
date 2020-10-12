@@ -17,7 +17,7 @@ namespace RestDotnet.Controllers
         [Route("")]
         public async Task<ActionResult<List<Car>>> Get([FromServices] DataContext context)
         {
-            var cars = await context.Cars.ToListAsync();
+            var cars = await context.Cars.Include(x => x.BrandId).ToListAsync();
 
             return cars;
         }

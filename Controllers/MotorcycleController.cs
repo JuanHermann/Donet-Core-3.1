@@ -10,25 +10,25 @@ using System.Threading.Tasks;
 namespace RestDotnet.Controllers
 {
     [ApiController]
-    [Route("brands")]
-    public class BrandController : ControllerBase
+    [Route("motorcycles")]
+    public class MotorcycleController : ControllerBase
     {
         [HttpGet]
         [Route("")]
-        public async Task<ActionResult<List<Brand>>> Get([FromServices] DataContext context)
+        public async Task<ActionResult<List<Motorcycle>>> Get([FromServices] DataContext context)
         {
-            var brands = await context.Brands.ToListAsync();
+            var motorcycles = await context.Motorcycles.Include(x => x.BrandId).ToListAsync();
 
-            return brands;
+            return motorcycles;
         }
 
         [HttpPost]
         [Route("")]
-        public async Task<ActionResult<Brand>> Post([FromServices] DataContext context, [FromBody] Brand model)
+        public async Task<ActionResult<Motorcycle>> Post([FromServices] DataContext context, [FromBody] Motorcycle model)
         {
             if (ModelState.IsValid)
             {
-                context.Brands.Add(model);
+                context.Motorcycles.Add(model);
                 await context.SaveChangesAsync();
                 return model;
             }

@@ -4,14 +4,14 @@ using RestDotnet.Abastracts;
 
 namespace RestDotnet.Models
 {
-    public class Car : Vehicle
+    public class Motorcycle : Vehicle
     {
         [Required(ErrorMessage = "Campo Obrigatório!")]
-        public Boolean HaveFrontGuard { get; set; }
+        public Boolean HaveSpecialSuspension { get; set; }
 
         public override int WheelNumber()
         {
-            return 4;
+            return 2;
         }
 
     }
